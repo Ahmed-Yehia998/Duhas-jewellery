@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ring Size Finder</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 0; background: #f6f6f6; font-family: system-ui, sans-serif; }
+  .ring-sizer { max-width: 400px; margin: 20px auto; background: #fff; padding: 18px; border-radius: 14px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+  h2 { text-align: center; margin-bottom: 20px; }
+  .step { margin-bottom: 28px; }
+  .step-title { font-weight: 600; margin-bottom: 10px; }
+  .circle { margin: 12px auto; border: 2px solid #000; border-radius: 50%; transition: width 0.15s ease, height 0.15s ease; }
+  #coin { width: 120px; height: 120px; max-width: 80vw; max-height: 80vw; }
+  #finger { width: 160px; height: 160px; max-width: 90vw; max-height: 90vw; }
+  .disabled { opacity: 0.4; }
+  input[type="range"], input[type="text"] { width: 100%; margin-top: 12px; padding: 6px; font-size: 14px; }
+  button { width: 100%; padding: 13px; margin-top: 10px; font-size: 15px; border-radius: 10px; border: none; cursor: pointer; }
+  #lockBtn { background: #000; color: #fff; }
+  #resetBtn { background: #fff; color: #000; border: 1px solid #000; display: none; }
+  button:disabled { background: #aaa; cursor: not-allowed; }
+  .hint { font-size: 13px; color: #666; text-align: center; margin-top: 6px; }
+  .result { text-align: center; padding: 12px; background: #f3f3f3; border-radius: 10px; }
+  @media (max-width: 480px) { .ring-sizer { padding: 12px; } button { font-size: 14px; padding: 12px; } }
+</style>
+</head>
+<body>
+
+<div class="ring-sizer">
+  <h2>Ring Size Finder</h2>
+
+  <!-- STEP 1: Coin Calibration -->
+  <div class="step">
+    <p class="step-title">Step 1: Match the 1 EGP coin</p>
+    <div class="circle" id="coin"></div>
+    <input type="range" min="80" max="200" value="120" id="coinSlider">
+    <button id="lockBtn">Confirm Coin Size</button>
+    <button id="resetBtn">Recalibrate</button>
+    <p class="hint" id="status">Not calibrated</p>
+  </div>
+
+  <!-- STEP 2: Finger Measurement -->
+  <div class="step">
+    <p class="step-title">Step 2: Measure your finger</p>
+    <div class="circle disabled" id="finger"></div>
+    <input type="range" min="100" max="240" value="160" id="fingerSlider" disabled>
+    <p class="hint">Or enter your finger diameter (14–24.2 mm, decimals allowed):</p>
+    <input type="text" id="mmInput" disabled placeholder="e.g. 17.3">
+  </div>
+
+  <!-- RESULT -->
+  <div class="result">
+    <p>Diameter: <strong><span id="mm">—</span> mm</strong></p>
+    <p>Ring Size: <strong>US <span id="size">—</span></strong></p>
+  </div>
+</div>
+
+<script>
+const coin = document.getElementById("coin");
+const finger = document.getElementById("finger");
+const coinSlider = document.getElementById("coinSlider");
+const fingerSlider = document.getElementById("fingerSlider");
+const mmInput = document.getElementById("mmInput");
+const lockBtn = document.getElementById("lockBtn");
+const resetBtn = document.getElementById("resetBtn");
+const mmText = document.getElementById("mm");
+const sizeText = document.getElementById("size");
+const statusText = document.getElementById("status");
+
+let pxPerMM = null;
+let locked = false;
+
+function getRingSizeTable() {
+  return [
+    { mm: 14.0, us: 3 },
+    { mm: 14.8, us: 4 },
+    { mm: 15.2, us: 4.5 },
+    { mm: 15.6, us: 5 },
+    { mm: 16.0, us: 5.5 },
+    { mm: 16.5, us: 6 },
+    { mm: 16.9, us: 6.5 },
+    { mm: 17.3, us: 7 },
+    { mm: 17.7, us: 7.5 },
+    { mm: 18.2, us: 8 },
+    { mm: 18.6, us: 8.5 },
+    { mm: 19.0, us: 9 },
+    { mm: 19.4, us: 9.5 },
+    { mm: 19.8, us: 10 },
+    { mm: 20.2, us: 10.5 },
+    { mm: 20.6, us: 11 },
+    { mm: 21.0, us: 11.5 },
+    { mm: 21.4, us: 12 },
+    { mm: 21.8, us: 12.5 },
+    { mm: 22.2, us: 13 },
+    { mm: 22.6, us: 13.5 },
+    { mm: 23.0, us: 14 },
+    { mm: 23.4, us: 14.5 },
+    { mm: 23.8, us: 15 },
+    { mm: 24.2, us: 15.5 }
+  ];
+}
+
+const maxDiameterMM = Math.max(...getRingSizeTable().map(r => r.mm));
+
+/* STEP 1 — COIN CALIBRATION */
+coinSlider.addEventListener("input", () => {
+  if (locked) return;
+  const px = coinSlider.value;
+  coin.style.width = px + "px";
+  coin.style.height = px + "px";
+});
+
+/* LOCK CALIBRATION */
+lockBtn.addEventListener("click", () => {
+  const px = coinSlider.value;
+  pxPerMM = px / 25; // 1 EGP coin = 25mm
+  locked = true;
+
+  coinSlider.disabled = true;
+  lockBtn.disabled = true;
+
+  fingerSlider.disabled = false;
+  mmInput.disabled = false;
+  finger.classList.remove("disabled");
+  resetBtn.style.display = "block";
+
+  fingerSlider.max = maxDiameterMM * pxPerMM;
+
+  statusText.textContent = "Calibration locked ✔";
+  statusText.style.color = "green";
+});
+
+/* RECALIBRATE */
+resetBtn.addEventListener("click", () => {
+  locked = false;
+  pxPerMM = null;
+
+  coinSlider.disabled = false;
+  coinSlider.value = 120;
+  coin.style.width = "120px";
+  coin.style.height = "120px";
+
+  fingerSlider.disabled = true;
+  mmInput.disabled = true;
+  fingerSlider.value = 160;
+  finger.style.width = "160px";
+  finger.style.height = "160px";
+  finger.classList.add("disabled");
+
+  mmText.textContent = "—";
+  sizeText.textContent = "—";
+  mmInput.value = "";
+
+  lockBtn.disabled = false;
+  resetBtn.style.display = "none";
+
+  statusText.textContent = "Not calibrated";
+  statusText.style.color = "#666";
+});
+
+/* UPDATE FINGER CIRCLE AND RESULT */
+function updateFinger(px) {
+  finger.style.width = px + "px";
+  finger.style.height = px + "px";
+  const diameter = (px / pxPerMM).toFixed(2);
+  mmText.textContent = diameter;
+  sizeText.textContent = getRingSize(diameter);
+}
+
+// Slider input
+fingerSlider.addEventListener("input", () => {
+  if (!locked) return;
+  updateFinger(fingerSlider.value);
+});
+
+// Text input: freely type anything, decimals allowed
+mmInput.addEventListener("input", () => {
+  if (!locked) return;
+
+  // Parse safely only if valid number
+  let parsed = parseFloat(mmInput.value.replace(",", "."));
+  if (isNaN(parsed)) return; // allow free typing, don't overwrite invalid text
+
+  // Cap max
+  if (parsed > 24.2) parsed = 24.2;
+
+  const px = parsed * pxPerMM;
+  fingerSlider.value = px;
+  updateFinger(px);
+});
+
+/* GET RING SIZE */
+function getRingSize(mm) {
+  const table = getRingSizeTable();
+  return table.reduce((a,b) =>
+    Math.abs(b.mm - mm) < Math.abs(a.mm - mm) ? b : a
+  ).us;
+}
+</script>
+
+</body>
+</html>

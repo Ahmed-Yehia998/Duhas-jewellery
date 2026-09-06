@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Meta tags for character encoding and viewport responsiveness -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <!-- Page title shown in browser tab -->
+  <title>Duha’s Jewellery | Elegant Stainless & Silver Pieces</title>
+  
+  <!-- Favicon: decorative star icon that appears in browser tab -->
+  <link rel="icon" href="/favicon.ico" />
+  
+  <!-- Google Fonts preconnect for faster font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Link to main stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/stainless.css">
+</head>
+<body>
+  <script>window.pageMaterial = 'silver';</script>
+  <!-- Promo banner: Elegant announcement with premium styling -->
+  <div class="promo-banner" role="region" aria-label="Promotional banner">
+    <div class="promo-track">
+      <div class="promo-loop">
+        <span class="promo-item">✨ FREE DELIVERY OVER 1999 EGP</span>
+        <span class="promo-sep">&nbsp;•&nbsp;</span>
+        <span class="promo-item">💎 PREMIUM 925K Silver</span>
+        <span class="promo-sep">&nbsp;•&nbsp;</span>
+        <span class="promo-item">🚚 2-4 BUSINESS DAYS DELIVERY</span>
+        <span class="promo-sep">&nbsp;•&nbsp;</span>
+        <span class="promo-item">💯 QUALITY GUARANTEED</span>
+      </div>
+      <div class="promo-loop" aria-hidden="true">
+        <span class="promo-item">✨ FREE DELIVERY OVER 1999 EGP</span>
+        <span class="promo-sep">&nbsp;•&nbsp;</span>
+        <span class="promo-item">💎 PREMIUM 925K Silver</span>
+        <span class="promo-sep">&nbsp;•&nbsp;</span>
+        <span class="promo-item">🚚 2-4 BUSINESS DAYS DELIVERY</span>
+        <span class="promo-sep">&nbsp;•&nbsp;</span>
+        <span class="promo-item">💯 QUALITY GUARANTEED</span>
+      </div>
+    </div>
+  </div>
+  <!-- HEADER: Navigation bar with logo, menu, search, and cart button -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Logo/Brand name -->
+      <a class="logo" href="#">Duha's<s></s> Jewellery</a>
+      
+      <!-- Navigation menu -->
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <script>
+function toggleMenu(){
+  document.querySelector('.site-nav').classList.toggle('active');
+}
+</script>
+
+      <nav class="site-nav">
+        <!-- <a href="/Goldplated_silver.html">Gold Plated Silver</a> -->
+        <a href="/Stainless.html">Stainless Steel</a>
+        <a href="/Goldplated_silver.html">Gold Plated Silver</a>
+        <a href="/Sizer.html">Ring Sizer Guide</a>
+      </nav>
+      
+      <!-- Header action buttons: Search and Cart -->
+      <div class="header-actions">
+        <!-- <button id="searchBtn" class="icon-btn">Search</button> -->
+        <!-- Cart button with dynamic count badge -->
+        <button id="cartBtn" class="icon-btn">Cart <span id="cartCount" class="cart-count">0</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="stainless-react-root"></div>
+  </main>
+
+  <!-- FOOTER: Comprehensive footer with links and information -->
+  <footer class="site-footer">
+    <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: left;">
+      <div class="footer-section">
+        <div class="logo" style="color: #fff; font-size: 28px; margin-bottom: 16px;">Duha's<s></s> Jewellery</div>
+        <p style="color: rgba(255,255,255,0.8); margin: 0; line-height: 1.6;">Crafting timeless Silver jewelry with passion and precision. Each piece tells a story of elegance and individuality.</p>
+      </div>
+      <div class="footer-section">
+        <h3 style="color: #fff; margin: 0 0 16px; font-size: 18px;">Quick Links</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li><a href="#collections" style="color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 8px;">Collections</a></li>
+          <li><a href="/Goldplated_silver.html" style="color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 8px;">Gold Plated Silver</a></li>
+          <li><a href="/Stainless.html" style="color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 8px;">Stainless Steel</a></li>
+          <li><a href="/Sizer.html" style="color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 8px;">Ring Sizer</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3 style="color: #fff; margin: 0 0 16px; font-size: 18px;">Contact & Support</h3>
+        <p style="color: rgba(255,255,255,0.8); margin: 0 0 8px;">📱 WhatsApp: 01101163565</p>
+        <p style="color: rgba(255,255,255,0.8); margin: 0 0 8px;">📧 DM us on Instagram</p>
+      </div>
+      <div class="footer-section">
+        <h3 style="color: #fff; margin: 0 0 16px; font-size: 18px;">Follow Us</h3>
+        <div class="footer-right">
+          <!-- Instagram link with SVG icon -->
+          <a href="https://www.instagram.com/duhajewellery.egy" target="_blank" aria-label="Instagram" title="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+            </svg>
+          </a>
+          
+          <!-- TikTok link with SVG icon -->
+          <a href="https://tiktok.com/@duhajewellery.egy" target="_blank" aria-label="TikTok" title="TikTok">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.1 1.75 2.9 2.9 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.26 6.26 0 0 0-1.01-.08C5.21 9.31 2 12.52 2 16.6s3.21 7.29 7.25 7.29c4.04 0 7.25-3.21 7.25-7.29V10.82a8.08 8.08 0 0 0 5.25 1.89v-3.54a4.45 4.45 0 0 1-1.16-.15z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding-top: 20px; text-align: center; color: rgba(255,255,255,0.6);">
+      © <span id="year"></span> Duha's Jewellery. All rights reserved. | Made with ❤️ in Egypt
+    </div>
+  </footer>
+
+  <!-- PRODUCT MODAL: Popup window that displays detailed product information -->
+  <div id="productModal" class="modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <!-- Close button for modal -->
+      <button id="modalClose" class="modal-close">×</button>
+      <!-- Content injected dynamically by JavaScript when a product is clicked -->
+      <div class="modal-content">
+        <!-- modal content injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CART PANEL: Right-side sliding panel showing cart items and checkout form -->
+  <aside id="cartPanel" class="cart-panel" aria-hidden="true">
+    <div class="cart-panel-inner">
+      <!-- Close button for cart panel -->
+      <button id="cartClose" class="modal-close">×</button>
+      
+      <!-- Cart title -->
+      <h3>Your Cart</h3>
+      
+      <!-- Container for cart items (populated by JavaScript) -->
+      <div id="cartItems" class="cart-items"></div>
+      
+      <!-- CHECKOUT FORM: Buyer information fields for WhatsApp checkout -->
+      <div class="checkout-form">
+        <!-- Buyer name input field -->
+        <label for="buyerName">Full Name:</label>
+        <input id="buyerName" type="text" placeholder="Your full name" />
+        
+        <!-- Government/State input field -->
+        <label for="buyerGovernment">Government:</label>
+        <input id="buyerGovernment" list="egyptGovernments" type="text" placeholder="Start typing a government" />
+        <datalist id="egyptGovernments">
+          <option value="Cairo">
+          <option value="Giza">
+          <option value="Alexandria">
+          <option value="Dakahlia">
+          <option value="Beheira">
+          <option value="Gharbia">
+          <option value="Kafr el Sheikh">
+          <option value="Sharqia">
+          <option value="Qalyubia">
+          <option value="Monufia">
+          <option value="Matrouh">
+          <option value="Ismailia">
+          <option value="Suez">
+          <option value="Port Said">
+          <option value="Damietta">
+          <option value="Beni Suef">
+          <option value="Fayoum">
+          <option value="Minya">
+          <option value="Assiut">
+          <option value="Sohag">
+          <option value="Qena">
+          <option value="Luxor">
+          <option value="Aswan">
+          <option value="Red Sea">
+          <option value="New Valley">
+          <option value="North Sinai">
+          <option value="South Sinai">
+        </datalist>
+        <small class="field-note"></small>
+
+        <!-- Detailed address input field -->
+        <label for="buyerAddress">Full address details:</label>
+        <textarea id="buyerAddress" placeholder="Street, building, apartment, landmark" rows="3"></textarea>
+
+        <!-- Buyer phone number input field -->
+        <label for="buyerPhone">Phone number:</label>
+        <input id="buyerPhone" type="tel" placeholder="Your phone number" pattern="[0-9]{11}" maxlength="11" />
+
+        <!-- Second phone number input field (optional) -->
+        <label for="buyerPhone2">Second phone number (optional):</label>
+        <input id="buyerPhone2" type="tel" placeholder="Alternative phone number" pattern="[0-9]{11}" maxlength="11" />
+      </div>
+      
+      <!-- PAYMENT METHOD: Choose how you'd like to pay -->
+      <div class="checkout-form">
+        <label style="margin-top:8px;">Payment method:</label>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <label class="payment-option"><input type="radio" name="paymentMethod" value="Cash on Delivery" checked><span class="pm-label">Cash on Delivery</span></label>
+          <label class="payment-option"><input type="radio" name="paymentMethod" value="Instapay"><span class="pm-label">Instapay</span></label>
+          <label class="payment-option"><input type="radio" name="paymentMethod" value="E-Wallet"><span class="pm-label">E-Wallet</span></label>
+          <!-- <label class="payment-option"><input type="radio" name="paymentMethod" value="Visa"><span class="pm-label">Visa / Card</span></label> -->
+        </div>
+        <div id="paymentInstructions" class="payment-instructions" style="display:none;margin-top:12px;color:var(--primary-2);font-size:14px"></div>
+      </div>
+      
+      <!-- PROMOCODE: apply discount codes -->
+      <div class="promo-code-row">
+        <input id="promoInput" type="text" placeholder="Enter promocode">
+        <button id="promoApplyBtn">Apply</button>
+      </div>
+      <div id="promoMessage"></div>
+      <div class="promo-code-row loyalty-row">
+        <div class="loyalty-info">
+          <strong>Loyalty Points:</strong> <span id="loyaltyPointsValue">0</span>
+          <span class="loyalty-money">Redeemable: <span id="loyaltyMoneyValue">EGP 0</span></span>
+        </div>
+        <input id="loyaltyRedeemInput" type="number" min="0" step="1000" value="0" placeholder="Points to redeem" />
+        <button id="loyaltyRedeemBtn" type="button">Use Points</button>
+      </div>
+      <div id="loyaltySummaryMessage" class="helper-text"></div>
+
+      <!-- CHECKOUT SUMMARY: Shows subtotal, shipping, and total -->
+      <div class="cart-summary">
+        <div class="order-summary">
+          <div class="summary-row"><span>Subtotal</span><strong id="cartSubtotal">EGP0</strong></div>
+          <div class="summary-row"><span>Discount</span><strong id="cartDiscount">EGP0</strong></div>
+          <div class="summary-row"><span>Loyalty Points Used</span><strong id="loyaltyUsedValue">0</strong></div>
+          <div class="summary-row"><span>Shipping</span><strong id="cartShipping">EGP0</strong></div>
+          <div class="summary-row total-row"><span>Total</span><strong id="cartTotal">EGP0</strong></div>
+        </div>
+        <button id="checkoutBtn" class="btn">Checkout via WhatsApp</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- React and React DOM libraries -->
+  <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
+  
+  <!-- React App Component (Precompiled) -->
+  <!-- <script src="stainless-react/StainlessApp.js"></script> -->
+  
+    <!-- Main application JavaScript file -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/live-prices.js"></script>
+  
+  
+
+  <!-- Size Selection Modal for Rings -->
+  <div id="sizeModal" class="modal" aria-hidden="true">
+    <div class="modal-overlay" onclick="closeSizeModal()"></div>
+    <div class="modal-dialog ring-size-modal">
+      <button class="modal-close" onclick="closeSizeModal()" aria-label="Close modal">✕</button>
+
+      <div class="modal-header">
+        <div class="modal-icon">💍</div>
+        <h2>Select Your Ring Size</h2>
+        <p class="modal-subtitle">Find the perfect fit for your finger</p>
+      </div>
+
+      <div class="size-guide-section">
+        <div class="size-guide-header">
+          <span class="guide-icon">📏</span>
+          <span class="guide-text">Need help finding your size?</span>
+          <button class="guide-toggle" onclick="toggleSizeGuide()">Size Guide</button>
+        </div>
+        <div id="sizeGuide" class="size-guide-content" style="display: none;">
+          <button class="guide-close" onclick="toggleSizeGuide()">Hide guide</button>
+          <div class="guide-info">
+            <h4>How to measure:</h4>
+            <ol>
+              <li>Wrap a string around your finger</li>
+              <li>Mark where it overlaps</li>
+              <li>Measure the length in mm</li>
+              <li>Use our chart below to find your size</li>
+            </ol>
+            <div class="size-chart">
+              <div class="chart-header">
+                <span>Circumference (mm)</span>
+                <span>Ring Size</span>
+              </div>
+              <div class="chart-row"><span>49-50</span><span>6</span></div>
+              <div class="chart-row"><span>51-52</span><span>7</span></div>
+              <div class="chart-row"><span>53-54</span><span>8</span></div>
+              <div class="chart-row"><span>55-57</span><span>9</span></div>
+              <div class="chart-row"><span>58-59</span><span>10</span></div>
+              <div class="chart-row"><span>60-62</span><span>11</span></div>
+              <div class="chart-row"><span>63-64</span><span>12</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="size-selection">
+        <h3>Available Sizes</h3>
+        <div id="sizeOptions" class="size-options-grid">
+          <!-- Size options will be generated here -->
+        </div>
+      </div>
+
+      <div class="selected-size-display">
+        <span id="selectedSizeText">No size selected</span>
+      </div>
+
+      <div class="modal-footer">
+        <button onclick="closeSizeModal()" class="btn-secondary">Cancel</button>
+        <button id="sizeConfirmBtn" class="btn-primary" disabled>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Length Selection Modal for Necklaces -->
+  <div id="necklaceModal" class="modal" aria-hidden="true">
+    <div class="modal-dialog elegant-modal">
+      <button class="modal-close" onclick="closeNecklaceModal()">✕</button>
+      <div class="modal-header">
+        <h2>Select Necklace Length</h2>
+        <p class="modal-subtitle">Find the perfect length for you</p>
+      </div>
+      <div id="necklaceOptions" class="options-grid">
+        <!-- Length options will be generated here -->
+      </div>
+      <div class="modal-footer">
+        <button onclick="closeNecklaceModal()" class="btn-secondary">Cancel</button>
+        <button id="necklaceConfirmBtn" class="btn-primary">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bracelet Size Selection Modal -->
+  <div id="braceletModal" class="modal" aria-hidden="true">
+    <div class="modal-dialog elegant-modal">
+      <button class="modal-close" onclick="closeBraceletModal()">✕</button>
+      <div class="modal-header">
+        <h2>Select Bracelet Size</h2>
+        <p class="modal-subtitle">Choose your preferred size</p>
+      </div>
+      <div id="braceletOptions" class="options-grid">
+        <!-- Bracelet size options will be generated here -->
+      </div>
+      <div class="modal-footer">
+        <button onclick="closeBraceletModal()" class="btn-secondary">Cancel</button>
+        <button id="braceletConfirmBtn" class="btn-primary">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

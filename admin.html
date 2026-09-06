@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Duha's Jewellery Admin</title>
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <div class="admin-container">
+    <div class="admin-hero">
+      <p class="admin-kicker">Duha's Jewellery</p>
+      <h1>Admin Dashboard</h1>
+      <p class="admin-subtitle">Manage pricing, products, and storefront content from one place.</p>
+    </div>
+
+    <div id="loginBox">
+      <input type="email" id="email" placeholder="Admin email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button id="loginBtn">Login</button>
+    </div>
+
+    <div id="adminPanel" style="display: none;">
+      <div class="admin-tabs">
+        <div class="admin-tab active" data-tab="prices">Prices</div>
+        <div class="admin-tab" data-tab="products">Products</div>
+        <div class="admin-tab" data-tab="users">Users</div>
+      </div>
+
+      <!-- PRICES SECTION -->
+      <div id="pricesSection" class="admin-section active">
+        <div class="section-header">
+          <div>
+            <h2>Pricing Controls</h2>
+            <p>Set the rules that drive product pricing across the store.</p>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <h3>Silver & Gold Plated</h3>
+            <div class="form-group">
+              <label for="silverPriceInput">Silver price per gram</label>
+              <input id="silverPriceInput" type="number" min="0" step="0.01" placeholder="Enter silver price" />
+            </div>
+            <div class="form-group">
+              <label for="goldplatedPriceInput">Goldplated price per gram</label>
+              <input id="goldplatedPriceInput" type="number" min="0" step="0.01" placeholder="Enter goldplated price" />
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Profit Rates</h3>
+            <div class="form-group">
+              <label for="stainlessProfitPercentageInput">Stainless profit percentage (%)</label>
+              <input id="stainlessProfitPercentageInput" type="number" min="0" step="0.01" placeholder="Enter stainless profit percentage" />
+            </div>
+            <div class="form-group">
+              <label for="silverProfitPercentageInput">Silver profit percentage (%)</label>
+              <input id="silverProfitPercentageInput" type="number" min="0" step="0.01" placeholder="Enter silver profit percentage" />
+            </div>
+            <div class="form-group">
+              <label for="goldplatedProfitPercentageInput">Goldplated profit percentage (%)</label>
+              <input id="goldplatedProfitPercentageInput" type="number" min="0" step="0.01" placeholder="Enter goldplated profit percentage" />
+            </div>
+            <div class="form-group">
+              <label for="packagingCostInput">Packaging cost (EGP)</label>
+              <input id="packagingCostInput" type="number" min="0" step="0.01" placeholder="Enter packaging cost" />
+            </div>
+          </div>
+
+          <div class="dashboard-card dashboard-card-accent">
+            <h3>Stainless Prices</h3>
+            <div class="form-group">
+              <label for="setsCategoryInput">Sets price</label>
+              <input id="setsCategoryInput" type="number" min="0" step="0.01" placeholder="Enter sets price" />
+            </div>
+            <div class="form-group">
+              <label for="ringsCategoryInput">Rings price</label>
+              <input id="ringsCategoryInput" type="number" min="0" step="0.01" placeholder="Enter rings price" />
+            </div>
+            <div class="form-group">
+              <label for="necklacesCategoryInput">Necklaces price</label>
+              <input id="necklacesCategoryInput" type="number" min="0" step="0.01" placeholder="Enter necklaces price" />
+            </div>
+            <div class="form-group">
+              <label for="braceletsCategoryInput">Bracelets price</label>
+              <input id="braceletsCategoryInput" type="number" min="0" step="0.01" placeholder="Enter bracelets price" />
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Promo Codes</h3>
+            <div class="form-group">
+              <label for="promoCodesInput">Promo codes list</label>
+              <textarea id="promoCodesInput" rows="8" placeholder="Enter one promo code per line"></textarea>
+            </div>
+            <p class="helper-text">Each valid code gives 10% off the product subtotal. One redemption per user phone number.</p>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Product Discounts</h3>
+            <div class="form-group">
+              <label for="discountScopeSelect">Discount scope</label>
+              <select id="discountScopeSelect">
+                <option value="product">Specific Product</option>
+                <option value="category">Whole Category</option>
+              </select>
+            </div>
+            <div class="form-group" id="discountProductWrap">
+              <label for="discountProductSelect">Product</label>
+              <select id="discountProductSelect">
+                <option value="">Select product</option>
+              </select>
+            </div>
+            <div class="form-group" id="discountMaterialWrap">
+              <label for="discountMaterialSelect">Material</label>
+              <select id="discountMaterialSelect">
+                <option value="stainless">Stainless Steel</option>
+                <option value="silver">Silver</option>
+                <option value="goldplated">Gold Plated</option>
+              </select>
+            </div>
+            <div class="form-group" id="discountCategoryWrap">
+              <label for="discountCategorySelect">Category</label>
+              <select id="discountCategorySelect">
+                <option value="">Select category</option>
+              </select>
+            </div>
+            <div class="form-group" id="discountCategoryGenderWrap">
+              <label for="discountCategoryGenderSelect">Category gender</label>
+              <select id="discountCategoryGenderSelect">
+                <option value="all">All genders</option>
+                <option value="women">Women</option>
+                <option value="men">Men</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="discountPercentInput">Discount percentage (%)</label>
+              <input id="discountPercentInput" type="number" min="1" max="90" step="1" placeholder="e.g. 15" />
+            </div>
+            <div class="form-group">
+              <label for="discountStartInput">Start date/time (optional)</label>
+              <input id="discountStartInput" type="datetime-local" />
+            </div>
+            <div class="form-group">
+              <label for="discountEndInput">End date/time (optional)</label>
+              <input id="discountEndInput" type="datetime-local" />
+            </div>
+            <div class="discount-actions-row">
+              <button type="button" id="addDiscountRuleBtn">Add Discount Rule</button>
+              <button type="button" id="clearDiscountRulesBtn" class="delete-btn">Clear All</button>
+            </div>
+            <p id="discountStatusMsg" class="helper-text"></p>
+            <div class="discount-manage-tools">
+              <div class="form-group">
+                <label for="discountRuleSearchInput">Search rules</label>
+                <input id="discountRuleSearchInput" type="text" placeholder="Search by product or category" />
+              </div>
+              <div class="form-group">
+                <label for="discountRuleScopeFilter">Filter by scope</label>
+                <select id="discountRuleScopeFilter">
+                  <option value="all">All scopes</option>
+                  <option value="product">Product</option>
+                  <option value="category">Category</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="discountRuleStatusFilter">Filter by status</label>
+                <select id="discountRuleStatusFilter">
+                  <option value="all">All statuses</option>
+                  <option value="active">Active</option>
+                  <option value="upcoming">Upcoming</option>
+                  <option value="expired">Expired</option>
+                </select>
+              </div>
+            </div>
+            <div id="discountRulesList" class="discount-rules-list"></div>
+          </div>
+        </div>
+
+        <button id="savePricesBtn">Save Settings</button>
+        <p id="pricesStatusMsg"></p>
+      </div>
+
+      <!-- PRODUCTS SECTION -->
+      <div id="productsSection" class="admin-section">
+        <div class="section-header">
+          <div>
+            <h2>Product Management</h2>
+            <p>Create, edit, and remove products from the catalog.</p>
+          </div>
+          <div class="product-header-actions">
+            <button id="addProductBtn">Add New Product</button>
+            <button id="removeAllProductsBtn" class="delete-btn" type="button">Remove All Products</button>
+          </div>
+        </div>
+
+        <div class="products-workspace-tabs">
+          <button type="button" class="products-workspace-tab active" data-products-workspace-tab="catalog">Catalog</button>
+          <button type="button" class="products-workspace-tab" data-products-workspace-tab="single">Single Product</button>
+          <button type="button" class="products-workspace-tab" data-products-workspace-tab="bulk">Bulk Add</button>
+        </div>
+
+        <div class="panel-card" style="margin-top: 14px;">
+          <div class="form-panel-header">
+            <p class="panel-kicker">Category Tools</p>
+            <h3>Restore Deleted Category</h3>
+            <p>Re-enable a deleted stainless category without leaving Products.</p>
+          </div>
+          <div class="bulk-card-grid">
+            <div>
+              <label for="restoreCategorySelect">Category</label>
+              <select id="restoreCategorySelect">
+                <option value="">Select category</option>
+                <option value="sets">Sets</option>
+                <option value="rings">Rings</option>
+                <option value="necklaces">Necklaces</option>
+                <option value="bracelets">Bracelets</option>
+              </select>
+            </div>
+            <div>
+              <label>&nbsp;</label>
+              <button type="button" id="restoreCategoryBtn">Restore Category</button>
+            </div>
+          </div>
+          <p id="restoreCategoryStatusMsg" class="helper-text"></p>
+        </div>
+
+        <div class="products-workspace-panel active" data-products-workspace-panel="catalog">
+          <div id="productsList" class="products-grid">
+            <!-- Products will be loaded here -->
+          </div>
+        </div>
+
+        <div class="products-workspace-panel" data-products-workspace-panel="single">
+          <div id="productForm" class="panel-card" style="display: none;">
+            <div class="form-panel-header">
+              <p class="panel-kicker">Single Product</p>
+              <h3 id="formTitle">Add Product</h3>
+            </div>
+            <form class="product-form">
+              <input type="hidden" id="productId" />
+              <div>
+                <label>Title:</label>
+                <input type="text" id="productTitle" required />
+              </div>
+              <div>
+                <label>Description:</label>
+                <textarea id="productDesc" required></textarea>
+              </div>
+              <div>
+                <label>Stainless Base Price (EGP):</label>
+                <input type="number" id="productPrice" min="0" step="0.01" required />
+              </div>
+              <div id="productWeightWrap">
+                <label>Weight (grams):</label>
+                <input type="number" id="productWeight" min="0" step="0.01" />
+              </div>
+              <div>
+                <label>Product Image:</label>
+                <input type="file" id="productImgFile" accept="image/*" required />
+                <div id="imagePreview" style="margin-top: 10px; max-width: 200px;"></div>
+              </div>
+              <div>
+                <label>Gender:</label>
+                <select id="productGender" required>
+                  <option value="Women">Women</option>
+                  <option value="Men">Men</option>
+                </select>
+              </div>
+              <div>
+                <label>Type:</label>
+                <select id="productType" required>
+                  <option value="ring">Ring</option>
+                  <option value="bracelet">Bracelet</option>
+                  <option value="necklace">Necklace</option>
+                  <option value="set">Set</option>
+                </select>
+              </div>
+              <div>
+                <label>Material:</label>
+                <select id="productMaterial" required>
+                  <option value="stainless">Stainless Steel</option>
+                  <option value="silver">Silver</option>
+                  <option value="goldplated">Gold Plated</option>
+                </select>
+              </div>
+              <div>
+                <label>Stainless Category:</label>
+                <select id="productCategory">
+                  <option value="">None</option>
+                  <option value="sets">Sets</option>
+                  <option value="rings">Rings</option>
+                  <option value="necklaces">Necklaces</option>
+                  <option value="bracelets">Bracelets</option>
+                </select>
+                <button type="button" id="removeProductCategoryBtn" class="category-remove-btn delete-btn">Delete Category</button>
+              </div>
+              <div>
+                <button type="submit" id="saveProductBtn">Save Product</button>
+                <button type="button" id="cancelProductBtn">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="products-workspace-panel" data-products-workspace-panel="bulk">
+          <div id="bulkProductForm" class="panel-card">
+            <div class="form-panel-header">
+              <p class="panel-kicker">Bulk Workspace</p>
+              <h3>Bulk Add Products</h3>
+              <p>Add multiple products in one save with shared details and auto-calculated prices.</p>
+            </div>
+            <form id="bulkProductFormElement" class="bulk-product-form">
+              <div class="bulk-form-card bulk-form-card-wide">
+                <div class="bulk-card-title-wrap">
+                  <h4>1) Product Inputs</h4>
+                  <p>Image count must match name count.</p>
+                </div>
+                <div class="bulk-card-grid">
+                  <div>
+                    <label for="bulkProductImages">Product Images</label>
+                    <input type="file" id="bulkProductImages" accept="image/*" multiple required />
+                  </div>
+                  <div>
+                    <label for="bulkProductNames">Product Names (one per line)</label>
+                    <textarea id="bulkProductNames" rows="6" placeholder="Ring A&#10;Ring B&#10;Ring C" required></textarea>
+                  </div>
+                  <div class="bulk-card-grid-full">
+                    <label for="bulkProductDesc">Shared Description</label>
+                    <textarea id="bulkProductDesc" rows="4" placeholder="Enter one description used for all products" required></textarea>
+                  </div>
+                </div>
+                <div class="bulk-live-row">
+                  <div class="bulk-counter-pill">
+                    <span>Images</span>
+                    <strong id="bulkImageCountValue">0</strong>
+                  </div>
+                  <div class="bulk-counter-pill">
+                    <span>Names</span>
+                    <strong id="bulkNameCountValue">0</strong>
+                  </div>
+                  <div class="bulk-counter-pill" id="bulkCountMatchPill">
+                    <span>Match</span>
+                    <strong id="bulkCountMatchValue">No</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bulk-form-card">
+                <div class="bulk-card-title-wrap">
+                  <h4>2) Product Profile</h4>
+                  <p>These values apply to all items.</p>
+                </div>
+                <div class="bulk-card-grid">
+                  <div>
+                    <label for="bulkProductGender">Gender</label>
+                    <select id="bulkProductGender" required>
+                      <option value="Women">Women</option>
+                      <option value="Men">Men</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="bulkProductType">Type</label>
+                    <select id="bulkProductType" required>
+                      <option value="ring">Ring</option>
+                      <option value="bracelet">Bracelet</option>
+                      <option value="necklace">Necklace</option>
+                      <option value="set">Set</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bulk-form-card">
+                <div class="bulk-card-title-wrap">
+                  <h4>3) Pricing Rules</h4>
+                  <p>Choose material and optional stainless category.</p>
+                </div>
+                <div class="bulk-card-grid">
+                  <div>
+                    <label for="bulkProductMaterial">Material</label>
+                    <select id="bulkProductMaterial" required>
+                      <option value="stainless">Stainless Steel</option>
+                      <option value="silver">Silver</option>
+                      <option value="goldplated">Gold Plated</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="bulkProductCategory">Stainless Category</label>
+                    <select id="bulkProductCategory">
+                      <option value="">None</option>
+                      <option value="sets">Sets</option>
+                      <option value="rings">Rings</option>
+                      <option value="necklaces">Necklaces</option>
+                      <option value="bracelets">Bracelets</option>
+                    </select>
+                    <button type="button" id="removeBulkCategoryBtn" class="category-remove-btn delete-btn">Delete Category</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bulk-form-card bulk-form-card-wide">
+                <div class="bulk-card-title-wrap">
+                  <h4>4) Weights (Silver/Gold Plated)</h4>
+                  <p>Use one value for all products, or one value per product line.</p>
+                </div>
+                <label for="bulkProductWeights">Weights (grams)</label>
+                <textarea id="bulkProductWeights" rows="5" placeholder="Use one weight per line or comma-separated values.&#10;Example: 3.5&#10;or&#10;3.2&#10;3.4&#10;3.8"></textarea>
+                <div class="bulk-hint-row">
+                  <span>One value can be reused for all items.</span>
+                  <span>Stainless ignores this field automatically.</span>
+                </div>
+              </div>
+
+              <div class="bulk-form-actions">
+                <button type="submit" id="saveBulkProductsBtn">Save Bulk Products</button>
+              </div>
+
+              <div class="bulk-ready-indicator" id="bulkReadyIndicator" aria-live="polite">
+                <strong id="bulkReadyTitle">Not ready</strong>
+                <p id="bulkReadyText">Add images, names, and required material fields to continue.</p>
+                <p id="bulkAttemptPreview" class="helper-text">0 products will be attempted.</p>
+              </div>
+            </form>
+            <p id="bulkProductStatusMsg" class="helper-text"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- USERS SECTION -->
+      <div id="usersSection" class="admin-section">
+        <div class="section-header">
+          <div>
+            <h2>User Orders</h2>
+            <p>Saved checkout submissions and coupon usage records.</p>
+          </div>
+        </div>
+
+        <div class="panel-card users-create-panel">
+          <h3>Add Order</h3>
+          <p>Create an order manually and save it directly to your orders list.</p>
+          <form id="addOrderForm" class="user-form-grid">
+            <div>
+              <label for="orderCustomerName">Customer name</label>
+              <input id="orderCustomerName" type="text" placeholder="Customer full name" required />
+            </div>
+            <div>
+              <label for="orderCustomerPhone">Phone number</label>
+              <input id="orderCustomerPhone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="11" placeholder="e.g. 01012345678" required />
+            </div>
+            <div>
+              <label for="orderCustomerPhone2">Alt phone (optional)</label>
+              <input id="orderCustomerPhone2" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="11" placeholder="Alternative phone" />
+            </div>
+            <div>
+              <label for="orderGovernment">Government</label>
+              <select id="orderGovernment" required>
+                <option value="">Select government</option>
+                <option value="Cairo">Cairo</option>
+                <option value="Giza">Giza</option>
+                <option value="Alexandria">Alexandria</option>
+                <option value="Beheira">Beheira</option>
+                <option value="Dakahlia">Dakahlia</option>
+                <option value="Gharbia">Gharbia</option>
+                <option value="Kafr el Sheikh">Kafr el Sheikh</option>
+                <option value="Sharqia">Sharqia</option>
+                <option value="Damietta">Damietta</option>
+                <option value="Port Said">Port Said</option>
+                <option value="Ismailia">Ismailia</option>
+                <option value="Suez">Suez</option>
+                <option value="Monufia">Monufia</option>
+                <option value="Qalyubia">Qalyubia</option>
+                <option value="Fayoum">Fayoum</option>
+                <option value="Beni Suef">Beni Suef</option>
+                <option value="Minya">Minya</option>
+                <option value="Assiut">Assiut</option>
+                <option value="Sohag">Sohag</option>
+                <option value="Qena">Qena</option>
+                <option value="Luxor">Luxor</option>
+                <option value="Red Sea">Red Sea</option>
+                <option value="Matrouh">Matrouh</option>
+                <option value="Aswan">Aswan</option>
+                <option value="North Sinai">North Sinai</option>
+                <option value="South Sinai">South Sinai</option>
+                <option value="New Valley">New Valley</option>
+              </select>
+            </div>
+            <div class="user-form-wide">
+              <label for="orderAddress">Address</label>
+              <textarea id="orderAddress" rows="3" placeholder="Street, building, floor, landmark" required></textarea>
+            </div>
+            <div>
+              <label for="orderPaymentMethod">Payment method</label>
+              <select id="orderPaymentMethod" required>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+                <option value="Instapay">Instapay</option>
+                <option value="E-Wallet">E-Wallet</option>
+              </select>
+            </div>
+            <div>
+              <label for="orderStatus">Status</label>
+              <select id="orderStatus" required>
+                <option value="pending">Pending</option>
+                <option value="processing">Processing</option>
+                <option value="delivering">Delivering</option>
+                <option value="shipped">Shipped</option>
+                <option value="delivered">Delivered</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+            <div>
+              <label for="orderSubtotal">Subtotal (EGP)</label>
+              <input id="orderSubtotal" type="number" min="0" step="0.01" value="0" required />
+            </div>
+            <div>
+              <label for="orderDiscount">Discount (EGP)</label>
+              <input id="orderDiscount" type="number" min="0" step="0.01" value="0" />
+            </div>
+            <div>
+              <label for="orderShipping">Shipping (EGP)</label>
+              <input id="orderShipping" type="number" min="0" step="0.01" value="0" />
+            </div>
+            <div>
+              <label for="orderTotal">Total (EGP)</label>
+              <input id="orderTotal" type="number" min="0" step="0.01" value="0" required readonly />
+            </div>
+            <div class="user-form-wide">
+              <label for="orderCouponCode">Coupon code (optional)</label>
+              <input id="orderCouponCode" type="text" placeholder="e.g. SILVER10" />
+            </div>
+            <div class="user-form-wide">
+              <label for="orderProductSelect">Add item from products list</label>
+              <p class="helper-text">Selecting a product auto-adds it and updates order totals.</p>
+              <div class="order-item-picker">
+                <input id="orderProductSearch" type="search" list="orderProductSuggestions" placeholder="Search product by name..." />
+                <datalist id="orderProductSuggestions"></datalist>
+                <select id="orderProductSelect">
+                  <option value="">Select a product</option>
+                </select>
+                <input id="orderProductQty" type="number" min="1" step="1" value="1" />
+                <button type="button" id="addOrderItemBtn">Add Item</button>
+              </div>
+            </div>
+            <div class="user-form-wide">
+              <div id="orderItemsPreview" class="order-items-preview">
+                <p class="muted-text">No items added yet.</p>
+              </div>
+            </div>
+            <div class="user-form-wide">
+              <label for="orderItemsInput">Items JSON (optional)</label>
+              <textarea id="orderItemsInput" rows="4" placeholder='[{"title":"Ring","quantity":1,"price":250}]'></textarea>
+            </div>
+            <div class="user-form-actions">
+              <button type="submit" id="addOrderBtn">Save Order</button>
+            </div>
+          </form>
+          <p id="orderFormStatus" class="helper-text"></p>
+        </div>
+
+        <div class="panel-card users-toolbar">
+          <label for="userSearchInput">Search customers</label>
+          <input type="search" id="userSearchInput" placeholder="Search by customer name or phone" />
+        </div>
+
+        <div class="panel-card users-create-panel">
+          <h3>Loyalty Points Manager</h3>
+          <p>Grant or set loyalty points directly for any customer by phone.</p>
+          <div class="user-form-grid">
+            <div>
+              <label for="loyaltyPhoneInput">Customer phone</label>
+              <input id="loyaltyPhoneInput" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="11" placeholder="e.g. 01012345678" />
+            </div>
+            <div>
+              <label for="loyaltyNameInput">Customer name (optional)</label>
+              <input id="loyaltyNameInput" type="text" placeholder="Used for display only" />
+            </div>
+            <div>
+              <label for="loyaltyPointsInput">Points</label>
+              <input id="loyaltyPointsInput" type="number" min="0" step="1" value="0" />
+            </div>
+            <div>
+              <label for="loyaltyModeSelect">Action</label>
+              <select id="loyaltyModeSelect">
+                <option value="add">Add points</option>
+                <option value="subtract">Subtract points</option>
+                <option value="set">Set exact points</option>
+              </select>
+            </div>
+            <div class="user-form-actions">
+              <button type="button" id="saveLoyaltyManualBtn">Save Loyalty Points</button>
+            </div>
+          </div>
+          <p id="loyaltyManualStatus" class="helper-text"></p>
+        </div>
+
+        <div id="usersList" class="panel-card users-panel">
+          <p>Loading user data...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
