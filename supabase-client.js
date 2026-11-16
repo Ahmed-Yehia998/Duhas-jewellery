@@ -1,6 +1,5 @@
-const SUPABASE_URL = "https://qzgregruqthofaiswidy.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_QAU3ooLfMmWl404Nyg0AQA_6ksmO3I6";
-
+const SUPABASE_URL = "https://nnxluufserwjnofnvyuy.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ueGx1dWZzZXJ3am5vZm52eXV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ4Mjc2MDMsImV4cCI6MjExMDQwMzYwM30.-Osym13BgrHUzuMzxAyH3wRZjer8nbN4S4njhjd7br0";
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Helper: returns current logged-in user id or null
